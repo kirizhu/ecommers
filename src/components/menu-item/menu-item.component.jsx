@@ -2,7 +2,7 @@ import React from 'react';
 import './menu-item.styles.scss';
 import { useHistory } from 'react-router-dom';
 
-function MenuItem({ title, imageUrl, size, linkUrl, match }) {
+const MenuItem = ({ title, imageUrl, size, linkUrl, match }) => {
   const history = useHistory();
   return (
     <div
@@ -21,6 +21,6 @@ function MenuItem({ title, imageUrl, size, linkUrl, match }) {
       </div>
     </div>
   );
-}
+};
 
 export default MenuItem;
