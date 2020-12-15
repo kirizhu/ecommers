@@ -10,8 +10,8 @@ const CollectionPreview = ({ title, items }) => {
         {/* nameless functions are costly on performance since they are called on each render/re-render */}
         {items
           .filter((item, i) => i < 4)
-          .map(({ id, ...otherItemProps }) => (
-            <CollectionItem key={id} {...otherItemProps} />
+          .map((item) => (
+            <CollectionItem key={item.id} item={item} />
           ))}
       </div>
     </div>
