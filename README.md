@@ -7,3 +7,6 @@ This is a e-commerce application similar to Shopify using React, Redux, React Ho
 In the project directory, you can run:
 
 ### `NPM start`
+
+## Check out the ecommers site
+[CRWN eCommers ](https://react-ecommers.herokuapp.com/)
