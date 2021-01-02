@@ -12,24 +12,13 @@ import HomePage from './pages/home/home.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInPage from './pages/signin/sign-in.component';
 import CheckoutPage from './pages/checkout/checkout.component';
+import { checkUserSession } from './redux/user/user.actions';
 
-const App = ({ currentUser }) => {
+const App = ({ currentUser, checkUserSession }) => {
   useEffect(() => {
-    // const unSubscribe = auth.onAuthStateChanged(async (userAuth) => {
-    //   if (userAuth) {
-    //     const userRef = await createUserProfileDocument(userAuth);
-
-    //     userRef.onSnapshot((snapShot) => {
-    //       setCurrentUser({
-    //         id: snapShot.id,
-    //         ...snapShot.data(),
-    //       });
-    //     });
-    //   }
-    //   setCurrentUser(userAuth);
-    // });
+    checkUserSession();
     return () => {
-      // unSubscribe();
+      checkUserSession();
     };
   }, []);
 
@@ -52,5 +41,8 @@ const App = ({ currentUser }) => {
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
+const mapDispatchToProps = (dispatch) => ({
+  checkUserSession: () => dispatch(checkUserSession()),
+});
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
