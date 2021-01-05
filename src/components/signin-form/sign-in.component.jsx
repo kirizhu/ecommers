@@ -9,13 +9,22 @@ import {
 } from '../../redux/user/user.actions';
 
 const SignIn = ({ googleSignInStart, emailSignInStart }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [userCredentials, setUserCredentials] = useState({
+    email: '',
+    password: '',
+  });
+  const { email, password } = userCredentials;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     emailSignInStart(email, password);
   };
+
+  const handleChange = (event) => {
+    const { value, name } = event.target;
+    setUserCredentials({ ...userCredentials, [name]: value });
+  };
+
   return (
     <div className='sign-in'>
       <h2>I already have an account</h2>
@@ -26,14 +35,14 @@ const SignIn = ({ googleSignInStart, emailSignInStart }) => {
           value={email}
           type='email'
           label='Email'
-          handleChange={(e) => setEmail(e.target.value)}
+          handleChange={handleChange}
         />
         <FormInput
           name='password'
           value={password}
           type='password'
           label='Password'
-          handleChange={(e) => setPassword(e.target.value)}
+          handleChange={handleChange}
         />
         <div className='button'>
           <CustomButton type='submit'>Sign in</CustomButton>{' '}

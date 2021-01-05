@@ -6,18 +6,27 @@ import { signUpStart } from '../../redux/user/user.actions';
 import './sign-up.styles.scss';
 
 const SignUp = ({ signUpStart }) => {
-  const [email, setEmail] = useState('');
-  const [displayName, setDisplayName] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [signUpCredentials, setSignUpCredentials] = useState({
+    displayName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const { displayName, email, password, confirmPassword } = signUpCredentials;
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords don't match");
       return;
     }
     signUpStart({ displayName, email, password });
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setSignUpCredentials({ ...signUpCredentials, [name]: value });
   };
 
   return (
@@ -30,7 +39,7 @@ const SignUp = ({ signUpStart }) => {
           name='displayName'
           value={displayName}
           label='Display Name'
-          handleChange={(e) => setDisplayName(e.target.value)}
+          handleChange={handleChange}
           required
         />
         <FormInput
@@ -38,7 +47,7 @@ const SignUp = ({ signUpStart }) => {
           name='email'
           value={email}
           label='Email'
-          handleChange={(e) => setEmail(e.target.value)}
+          handleChange={handleChange}
           required
         />
         <FormInput
@@ -46,7 +55,7 @@ const SignUp = ({ signUpStart }) => {
           name='password'
           value={password}
           label='Password'
-          handleChange={(e) => setPassword(e.target.value)}
+          handleChange={handleChange}
           required
         />
         <FormInput
@@ -54,7 +63,7 @@ const SignUp = ({ signUpStart }) => {
           name='confirmPassword'
           value={confirmPassword}
           label='Password'
-          handleChange={(e) => setConfirmPassword(e.target.value)}
+          handleChange={handleChange}
           required
         />
         <CustomButton type='submit'>SIGN UP</CustomButton>
