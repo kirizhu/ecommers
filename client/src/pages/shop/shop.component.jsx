@@ -23,8 +23,6 @@ const ShopPage = ({ match, fetchCollectionsStart }) => {
           path={`${match.path}`}
           component={CollectionsOverviewContainer}
         />
-      </Suspense>
-      <Suspense fallback={<div>...Loading</div>}>
         <Route
           path={`${match.path}/:collectionId`}
           component={CollectionPageContainer}

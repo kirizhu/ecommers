@@ -28,14 +28,8 @@ const App = ({ currentUser, checkUserSession }) => {
       <Switch>
         <Suspense fallback={<div>...Loading</div>}>
           <Route exact path='/' component={HomePage} />
-        </Suspense>
-        <Suspense fallback={<div>...Loading</div>}>
           <Route path='/shop' component={ShopPage} />
-        </Suspense>
-        <Suspense fallback={<div>...Loading</div>}>
           <Route exact path='/checkout' component={CheckoutPage} />
-        </Suspense>
-        <Suspense fallback={<div>...Loading</div>}>
           <Route
             exact
             path='/signin'
